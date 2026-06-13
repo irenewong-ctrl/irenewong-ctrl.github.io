@@ -11,7 +11,7 @@
   :root{
     --bg:#FAF8F4;
     --paper:#FFFFFF;
-    --ink:#1F2E2C;
+    --ink:#15211F;
     --ink-soft:#65766F;
     --accent:#2F6F5E;
     --accent-warm:#C8862E;
@@ -27,33 +27,37 @@
     font-size:14px;
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
-    padding:32px 0 64px;
   }
 
   /* ---------- page shell ---------- */
   .page{
     max-width:980px;
-    margin:0 auto 40px;
-    padding:56px 64px 72px;
-    background:var(--paper);
-    border-radius:8px;
-    box-shadow:0 1px 3px rgba(31,46,44,0.06), 0 12px 32px rgba(31,46,44,0.06);
+    margin:0 auto;
+    padding:48px 64px 80px;
     position:relative;
   }
-  .page:last-child{ margin-bottom:0; }
+  .page + .page{
+    border-top:2px solid var(--ink);
+  }
 
   .page-tag{
-    position:absolute;
-    top:28px;
-    right:28px;
+    display:flex;
+    align-items:center;
+    gap:9px;
     font-family:'IBM Plex Mono',monospace;
     font-size:11px;
     font-weight:600;
-    color:var(--paper);
+    color:var(--accent-warm);
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    margin-bottom:32px;
+  }
+  .page-tag::before{
+    content:'';
+    display:inline-block;
+    width:9px;
+    height:9px;
     background:var(--accent-warm);
-    padding:3px 9px;
-    border-radius:3px;
-    letter-spacing:0.08em;
   }
 
   /* ---------- header ---------- */
@@ -140,7 +144,6 @@
     font-size:11px;
     padding:3px 8px;
     border:1px solid var(--line);
-    border-radius:3px;
     color:var(--ink);
     background:var(--paper);
   }
@@ -155,7 +158,7 @@
   .job{
     margin-bottom:34px;
     padding-bottom:30px;
-    border-bottom:1px dashed var(--line);
+    border-bottom:1px solid var(--line);
     break-inside:avoid;
   }
   .job:last-child{ border-bottom:none; margin-bottom:0; padding-bottom:0; }
@@ -197,22 +200,19 @@
     color:var(--paper);
     background:var(--accent-warm);
     padding:1px 6px;
-    border-radius:3px;
     white-space:nowrap;
   }
 
   /* ---------- print ---------- */
   @media print{
-    body{ background:#fff; padding:0; }
+    body{ background:#fff; }
     .page{
-      box-shadow:none;
-      border-radius:0;
       max-width:100%;
-      margin:0;
       padding:20px 28px;
       page-break-after:always;
     }
     .page:last-child{ page-break-after:auto; }
+    .page + .page{ border-top:none; }
     .chip{ background:#fff; }
     .job{ break-inside:avoid; }
     .block{ break-inside:avoid; }
