@@ -1,1 +1,553 @@
-# irenewong-ctrl.github.io
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黄馨 Irene Wong — 简历 / Résumé</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF8F4;
+    --paper:#FFFFFF;
+    --ink:#1F2E2C;
+    --ink-soft:#65766F;
+    --accent:#2F6F5E;
+    --accent-warm:#C8862E;
+    --line:#E3DDD2;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter','Noto Sans SC',sans-serif;
+    font-size:14px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    padding:32px 0 64px;
+  }
+
+  /* ---------- page shell ---------- */
+  .page{
+    max-width:980px;
+    margin:0 auto 40px;
+    padding:56px 64px 72px;
+    background:var(--paper);
+    border-radius:8px;
+    box-shadow:0 1px 3px rgba(31,46,44,0.06), 0 12px 32px rgba(31,46,44,0.06);
+    position:relative;
+  }
+  .page:last-child{ margin-bottom:0; }
+
+  .page-tag{
+    position:absolute;
+    top:28px;
+    right:28px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    font-weight:600;
+    color:var(--paper);
+    background:var(--accent-warm);
+    padding:3px 9px;
+    border-radius:3px;
+    letter-spacing:0.08em;
+  }
+
+  /* ---------- header ---------- */
+  .header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:18px;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:22px;
+    margin-bottom:44px;
+  }
+  .page-zh .name-block h1{ font-family:'Noto Serif SC',serif; font-size:38px; font-weight:700; }
+  .page-en .name-block h1{ font-family:'Fraunces','Noto Serif SC',serif; font-size:46px; font-weight:600; letter-spacing:-0.01em; }
+  .name-block h1{ margin:0; }
+  .tagline{ margin:10px 0 0; font-size:13px; color:var(--ink-soft); letter-spacing:0.02em; }
+  .page-zh .tagline{ font-family:'Noto Sans SC',sans-serif; }
+  .tagline .dot{ color:var(--accent-warm); margin:0 6px; }
+  .contact{
+    text-align:right;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+  }
+  .contact a{ color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+  .contact a:hover{ border-color:var(--accent); color:var(--accent); }
+
+  /* ---------- layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:258px 1fr;
+    gap:58px;
+  }
+  @media (max-width:760px){
+    .layout{ grid-template-columns:1fr; }
+    .page{ padding:36px 24px 56px; }
+    .header{ flex-direction:column; align-items:flex-start; }
+    .contact{ text-align:left; }
+    .page-en .name-block h1{ font-size:36px; }
+    .page-zh .name-block h1{ font-size:30px; }
+  }
+
+  /* ---------- section headers ---------- */
+  .block{ margin-bottom:38px; }
+  .block h2, .experience > h2{
+    font-size:12px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    color:var(--accent);
+    border-bottom:1px solid var(--line);
+    padding-bottom:9px;
+    margin:0 0 18px;
+  }
+  .page-zh .block h2, .page-zh .experience > h2{ font-family:'Noto Serif SC',serif; letter-spacing:0.1em; }
+  .page-en .block h2, .page-en .experience > h2{ font-family:'Fraunces','Noto Serif SC',serif; }
+
+  /* ---------- education ---------- */
+  .edu-entry{ margin-bottom:20px; }
+  .edu-entry h3{ font-size:14px; font-weight:600; margin:0 0 4px; line-height:1.4; }
+  .page-zh .edu-entry h3{ font-family:'Noto Serif SC',serif; }
+  .page-en .edu-entry h3{ font-family:'Fraunces','Noto Serif SC',serif; }
+  .edu-entry .degree{ font-size:12px; color:var(--ink-soft); margin:0 0 7px; line-height:1.6; }
+  .edu-entry .meta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    margin:0;
+  }
+  .edu-entry .dates{ color:var(--accent); font-weight:500; }
+
+  /* ---------- skills ---------- */
+  .skill-group{ margin-bottom:16px; }
+  .skill-label{ font-size:12px; font-weight:600; margin:0 0 8px; color:var(--ink); }
+  .chips{ display:flex; flex-wrap:wrap; gap:6px; }
+  .chip{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    padding:3px 8px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    color:var(--ink);
+    background:var(--paper);
+  }
+
+  /* ---------- languages ---------- */
+  .lang-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; }
+  .lang-list li{ display:flex; justify-content:space-between; align-items:center; font-size:12.5px; }
+  .tag-mono{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--accent-warm); font-weight:600; }
+
+  /* ---------- experience ---------- */
+  .experience > h2{ margin-bottom:28px; }
+  .job{
+    margin-bottom:34px;
+    padding-bottom:30px;
+    border-bottom:1px dashed var(--line);
+    break-inside:avoid;
+  }
+  .job:last-child{ border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .job-head h3{ font-size:18px; font-weight:600; margin:0; }
+  .page-zh .job-head h3{ font-family:'Noto Serif SC',serif; }
+  .page-en .job-head h3{ font-family:'Fraunces','Noto Serif SC',serif; }
+  .job-meta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-top:7px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 16px;
+  }
+  .page-zh .job-meta .company{ font-family:'Noto Sans SC',sans-serif; font-size:12px; }
+  .job-meta .dates{ color:var(--accent); font-weight:600; }
+
+  .job-body h4{
+    font-size:11.5px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--ink);
+    margin:20px 0 9px;
+  }
+  .page-zh .job-body h4{ font-family:'Noto Sans SC',sans-serif; letter-spacing:0.05em; text-transform:none; font-size:13px; }
+  .job-body ul{ margin:0; padding-left:18px; }
+  .job-body li{ margin-bottom:7px; font-size:13px; line-height:1.65; }
+  .page-zh .job-body li{ font-size:13.5px; }
+  .job-body li::marker{ color:var(--accent); }
+  .job-body li:last-child{ margin-bottom:0; }
+
+  /* signature element: dashboard-style number tags */
+  .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    font-weight:600;
+    color:var(--paper);
+    background:var(--accent-warm);
+    padding:1px 6px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+
+  /* ---------- print ---------- */
+  @media print{
+    body{ background:#fff; padding:0; }
+    .page{
+      box-shadow:none;
+      border-radius:0;
+      max-width:100%;
+      margin:0;
+      padding:20px 28px;
+      page-break-after:always;
+    }
+    .page:last-child{ page-break-after:auto; }
+    .chip{ background:#fff; }
+    .job{ break-inside:avoid; }
+    .block{ break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================================================== -->
+  <!-- PAGE 1 — 中文                                          -->
+  <!-- ===================================================== -->
+  <section class="page page-zh">
+    <span class="page-tag">01 · 中文</span>
+
+    <header class="header">
+      <div class="name-block">
+        <h1>黄馨</h1>
+        <p class="tagline">业务运营与数据管理<span class="dot">·</span>留学行业数据系统搭建</p>
+      </div>
+      <div class="contact">
+        <a href="mailto:irenewong0714@outlook.com">irenewong0714@outlook.com</a>
+        <span>+86 188 6721 5227</span>
+        <span>湖南，中国</span>
+      </div>
+    </header>
+
+    <div class="layout">
+
+      <!-- 侧栏 -->
+      <aside class="sidebar">
+
+        <section class="block">
+          <h2>教育背景</h2>
+
+          <div class="edu-entry">
+            <h3>吉首大学</h3>
+            <p class="degree">管理学学士，文化产业管理专业（全日制）</p>
+            <p class="meta"><span>湖南，中国</span><span class="dates">2017.09 – 2019.06</span></p>
+          </div>
+
+          <div class="edu-entry">
+            <h3>湖南大众传媒职业技术学院</h3>
+            <p class="degree">大专，出版与发行（数字出版方向）专业（全日制）</p>
+            <p class="meta"><span>湖南，中国</span><span class="dates">2014.09 – 2017.06</span></p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2>技能</h2>
+
+          <div class="skill-group">
+            <p class="skill-label">数据管理与分析</p>
+            <div class="chips">
+              <span class="chip">EXCEL</span>
+              <span class="chip">MySQL（基础）</span>
+              <span class="chip">数据清洗与整理</span>
+              <span class="chip">基础看板搭建</span>
+              <span class="chip">业务数据跟踪</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <p class="skill-label">工具</p>
+            <div class="chips">
+              <span class="chip">飞书多维表格</span>
+              <span class="chip">Microsoft Office 套件</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2>语言</h2>
+          <ul class="lang-list">
+            <li><span>普通话</span><span class="tag-mono">母语 · 二乙</span></li>
+            <li><span>英语</span><span class="tag-mono">CET-6 · 450</span></li>
+          </ul>
+        </section>
+
+      </aside>
+
+      <!-- 工作经历 -->
+      <main class="experience">
+        <h2>工作经历</h2>
+
+        <!-- 工作1 -->
+        <article class="job">
+          <div class="job-head">
+            <h3>业务运营与数据管理专员</h3>
+            <div class="job-meta">
+              <span class="company">湖南绿藤教育科技有限公司</span>
+              <span class="dates">2022.11 – 2025.02</span>
+              <span>湖南，中国</span>
+            </div>
+          </div>
+
+          <div class="job-body">
+            <h4>数据体系建设与业务分析</h4>
+            <ul>
+              <li>从0搭建录取offer数据管理体系，完成院校、专业、录取结果等信息标准化分类与持续维护，实现历史录取数据集中管理与快速查询。</li>
+              <li>建立客户管理、财务管理及业务跟进数据台账，统一分散信息管理方式，提升数据可追溯性与业务协同效率。</li>
+              <li>设计并维护录取分析看板，对世界<span class="tag">Top100</span>、<span class="tag">Top50</span>及重点院校录取情况进行统计分析，为选校方案制定及业务决策提供支持。</li>
+              <li>定期输出客户、财务及业务转化分析报表，支持公司运营管理与资源配置。</li>
+            </ul>
+
+            <h4>流程优化与运营支持</h4>
+            <ul>
+              <li>梳理客户资料处理流程，建立标准化资料收集、整理及交付机制，减少重复沟通与重复修改。</li>
+              <li>主导财务报销、费用统计及对账流程优化，完善相关操作规范，形成持续沿用的内部管理流程。</li>
+              <li>管理合同、证照、公章及重要文件使用流程，保障日常运营合规性与资料完整性。</li>
+              <li>独立制作业务宣传海报、录取成果展示材料及公众号内容排版，支持市场推广及品牌运营。</li>
+            </ul>
+
+            <h4>企业运营与项目协调</h4>
+            <ul>
+              <li>参与公司从初创团队向规模化运营阶段的发展过程，支持办公场地搬迁及运营体系搭建。</li>
+              <li>独立完成营业执照、法人、股权、商标、公账、税务、社保及医保等多项工商事务办理与变更工作。</li>
+              <li>统筹公司搬迁期间工商、社保、公账及税务迁移流程，协调政府部门及第三方机构，保障业务连续运营。</li>
+              <li>协助新办公场地基础设施建设，包括网络、办公设备及供应商对接等工作，支持公司运营落地。</li>
+            </ul>
+
+            <h4>留学申请支持</h4>
+            <ul>
+              <li>独立完成<span class="tag">60+</span>份海外院校申请CV撰写与优化，结合院校要求进行内容结构设计与个性化调整。</li>
+              <li>支持<span class="tag">80+</span>长期服务客户（服务周期1年以上）的选校分析、申请材料整理及申请流程跟进。</li>
+              <li>通过院校官网、项目信息及历史录取数据研究，为客户提供申请背景分析及选校支持。</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 工作2 -->
+        <article class="job">
+          <div class="job-head">
+            <h3>出纳与行政支持</h3>
+            <div class="job-meta">
+              <span class="company">湖南辉程教育培训有限公司</span>
+              <span class="dates">2021.04 – 2022.03</span>
+              <span>湖南，中国</span>
+            </div>
+          </div>
+
+          <div class="job-body">
+            <ul>
+              <li>负责日常资金流水记录、发票开具及税控系统操作，确保账务准确。</li>
+              <li>制作进账、考勤等基础数据报表，支持日常运营管理。</li>
+              <li>协助行政事务及物资管理，保障办公环境稳定运行。</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 工作3 -->
+        <article class="job">
+          <div class="job-head">
+            <h3>校对编辑</h3>
+            <div class="job-meta">
+              <span class="company">湖南卓越文化传播有限公司</span>
+              <span class="dates">2019.03 – 2020.01</span>
+              <span>湖南，中国</span>
+            </div>
+          </div>
+
+          <div class="job-body">
+            <ul>
+              <li>负责教辅类出版物内容校对、格式审核及标准统一执行。</li>
+              <li>对文字、标点及版面进行系统性检查，确保内容准确与规范。</li>
+              <li>参与多套出版资料制作，形成高细致度与低错误率工作习惯。</li>
+            </ul>
+          </div>
+        </article>
+
+      </main>
+    </div>
+  </section>
+
+  <!-- ===================================================== -->
+  <!-- PAGE 2 — English                                       -->
+  <!-- ===================================================== -->
+  <section class="page page-en">
+    <span class="page-tag">02 · English</span>
+
+    <header class="header">
+      <div class="name-block">
+        <h1>Irene Wong</h1>
+        <p class="tagline">Business Operations &amp; Data Management<span class="dot">·</span>International Education Industry</p>
+      </div>
+      <div class="contact">
+        <a href="mailto:irenewong0714@outlook.com">irenewong0714@outlook.com</a>
+        <span>+86 188 6721 5227</span>
+        <span>Hunan, China</span>
+      </div>
+    </header>
+
+    <div class="layout">
+
+      <aside class="sidebar">
+
+        <section class="block">
+          <h2>Education</h2>
+
+          <div class="edu-entry">
+            <h3>Jishou University</h3>
+            <p class="degree">Bachelor of Management — Cultural Industry Management (Full-time)</p>
+            <p class="meta"><span>Hunan, China</span><span class="dates">Sept 2017 – Jun 2019</span></p>
+          </div>
+
+          <div class="edu-entry">
+            <h3>Hunan Mass Media Vocational &amp; Technical College</h3>
+            <p class="degree">Associate Degree — Publishing &amp; Distribution, Digital Publishing (Full-time)</p>
+            <p class="meta"><span>Hunan, China</span><span class="dates">Sept 2014 – Jun 2017</span></p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2>Skills</h2>
+
+          <div class="skill-group">
+            <p class="skill-label">Data Management &amp; Reporting</p>
+            <div class="chips">
+              <span class="chip">Excel</span>
+              <span class="chip">MySQL (Basic)</span>
+              <span class="chip">Data Cleaning &amp; Organization</span>
+              <span class="chip">Dashboard Design</span>
+              <span class="chip">Business Data Tracking</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <p class="skill-label">Tools</p>
+            <div class="chips">
+              <span class="chip">Feishu Bitable</span>
+              <span class="chip">MS Office Suite</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2>Languages</h2>
+          <ul class="lang-list">
+            <li><span>Mandarin Chinese</span><span class="tag-mono">Native</span></li>
+            <li><span>English</span><span class="tag-mono">CET-6 · 450</span></li>
+          </ul>
+        </section>
+
+      </aside>
+
+      <main class="experience">
+        <h2>Professional Experience</h2>
+
+        <!-- JOB 1 -->
+        <article class="job">
+          <div class="job-head">
+            <h3>Business Operations &amp; Data Management Specialist</h3>
+            <div class="job-meta">
+              <span class="company">Hunan Lvteng Education Technology Co., Ltd.</span>
+              <span class="dates">Nov 2022 – Feb 2025</span>
+              <span>Hunan, China</span>
+            </div>
+          </div>
+
+          <div class="job-body">
+            <h4>Data Management &amp; Business Analytics</h4>
+            <ul>
+              <li>Built and maintained the company's admissions data management system from the ground up, standardizing records for universities, programs, and admission outcomes to improve data accessibility and consistency.</li>
+              <li>Developed and managed centralized databases covering client information, financial records, and business operations, improving data visibility and cross-functional coordination.</li>
+              <li>Created and maintained admission analytics dashboards, tracking acceptance outcomes across <span class="tag">Top 100</span> and <span class="tag">Top 50</span> universities to support strategic planning and client advisory services.</li>
+              <li>Produced regular reports on client pipelines, financial performance, and business conversion metrics to support operational decision-making.</li>
+            </ul>
+
+            <h4>Process Improvement &amp; Operational Support</h4>
+            <ul>
+              <li>Streamlined client document workflows by establishing standardized procedures for information collection, organization, and delivery, reducing repetitive revisions and administrative workload.</li>
+              <li>Improved reimbursement, expense tracking, and reconciliation processes by developing internal operating procedures that continued to be used across the organization.</li>
+              <li>Managed contracts, company licenses, corporate seals, and key business documentation to ensure operational compliance and document integrity.</li>
+              <li>Designed promotional materials, admission result reports, and content layouts for marketing and business development initiatives.</li>
+            </ul>
+
+            <h4>Corporate Operations &amp; Project Coordination</h4>
+            <ul>
+              <li>Supported the company's growth from an early-stage startup environment by participating in operational infrastructure development and office expansion projects.</li>
+              <li>Independently handled corporate registration, shareholder changes, legal representative updates, trademark applications, bank account updates, tax registration, and social insurance administration.</li>
+              <li>Led the administrative coordination of company relocation projects, including business registration transfers, tax administration transitions, social insurance migration, and banking updates, ensuring uninterrupted business operations.</li>
+              <li>Coordinated vendors and service providers for office infrastructure setup, including internet services, office equipment, and facility-related projects.</li>
+            </ul>
+
+            <h4>International Application Support</h4>
+            <ul>
+              <li>Independently prepared and optimized <span class="tag">60+</span> academic CVs for international university applications, tailoring content and structure to program requirements.</li>
+              <li>Supported <span class="tag">80+</span> long-term clients (service period of 1+ years) throughout the application lifecycle, including profile evaluation, school selection research, document preparation, and progress tracking.</li>
+              <li>Conducted research on university programs, admission requirements, and historical admission trends via official websites and program data to support application strategy development.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- JOB 2 -->
+        <article class="job">
+          <div class="job-head">
+            <h3>Finance &amp; Operations Assistant</h3>
+            <div class="job-meta">
+              <span class="company">Hunan Huicheng Education Training Co., Ltd.</span>
+              <span class="dates">Apr 2021 – Mar 2022</span>
+              <span>Hunan, China</span>
+            </div>
+          </div>
+
+          <div class="job-body">
+            <ul>
+              <li>Managed financial transaction records, invoice processing, and tax control system operations, ensuring accurate bookkeeping.</li>
+              <li>Developed operational tracking reports — including revenue, attendance, and administrative data — for internal management use.</li>
+              <li>Supported office operations and asset management to ensure stable daily workflow execution.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- JOB 3 -->
+        <article class="job">
+          <div class="job-head">
+            <h3>Editorial &amp; Quality Control Assistant</h3>
+            <div class="job-meta">
+              <span class="company">Hunan Zhuoyue Cultural Communication Co., Ltd.</span>
+              <span class="dates">Mar 2019 – Jan 2020</span>
+              <span>Hunan, China</span>
+            </div>
+          </div>
+
+          <div class="job-body">
+            <ul>
+              <li>Performed quality control on educational publishing materials, including proofreading, formatting, and content validation.</li>
+              <li>Ensured consistency and accuracy across large-scale document sets through systematic checks of text, punctuation, and layout.</li>
+              <li>Developed strong detail-oriented review processes across multiple publication projects, maintaining a high-precision, low-error standard.</li>
+            </ul>
+          </div>
+        </article>
+
+      </main>
+    </div>
+  </section>
+
+</body>
+</html>
